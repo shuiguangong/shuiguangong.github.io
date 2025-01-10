@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="水管工加速代理-渠道合作介绍">
     <title>水管工加速代理-渠道合作介绍</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
     <style>
         body {
             margin: 0;
@@ -67,6 +68,7 @@
             text-decoration: underline;
         }
     </style>
+
 </head>
 <body>
     <header>
@@ -78,7 +80,7 @@
             <h2>关于我们</h2>
             <p>
                 水管工V.P.N成立于2021年，志在为中国大陆用户提供高速稳定的境外网络访问通道，尤其为用户访问被中国大陆阻断的境外网络服务（如youtube、facebook、twitter、色色网站等）提供高速稳定的通道。<br/>
-                官网：<a href="https://shuiguangong1.com?aff=1111111111" target="_blank">https://shuiguangong1.com</a> 或 <a href="https://shuiguangong2.com?aff=1111111111" target="_blank">https://shuiguangong2.com</a>
+                官网：<a id="sgglink1" href="https://shuiguangong1.com?aff=1111111111" target="_blank">https://shuiguangong1.com</a> 或 <a id="sgglink2" href="https://shuiguangong2.com?aff=1111111111" target="_blank">https://shuiguangong2.com</a>
             </p>
         </div>
         <div class="section">
@@ -99,5 +101,31 @@
     <footer>
         <p>&copy; 2021-2025 水管工 All Rights Reserved.</p>
     </footer>
+    <script>
+        let sggUrl1 = 'https://shuiguangong1.com';
+        let sggUrl2 = 'https://shuiguangong2.com';
+        const params = new URLSearchParams(window.location.search);
+        let aff = params.get('aff');
+        if(typeof aff === 'undefined' || aff === null || aff === 'null'){
+            aff = Cookies.get('aff');
+        }else{
+            let aff2 = Cookies.get('aff');
+            if(aff !== aff2){
+                Cookies.set('aff', aff, { expires: 1 });//1天
+            }
+        }
+        
+        //alert(aff);
+        
+        if(typeof aff !== 'undefined' && aff !== null && aff !== 'null'){
+            sggUrl1 += '?aff='+aff;
+            sggUrl2 += '?aff='+aff;
+            const sgglink1 = document.getElementById("sgglink1");
+            const sgglink2 = document.getElementById("sgglink2");
+            sgglink1.href = sggUrl1;
+            sgglink2.href = sggUrl2;
+        }
+        window.history.replaceState(null, '', '/');
+    </script>
 </body>
 </html>
